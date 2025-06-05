@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LINEメッセージシェアツール</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+  }
+  h1 {
+    color: #333;
+  }
+  textarea {
+    width: 80%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #00B900; /* LINEのブランドカラー */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #00A300;
+  }
+  #shareLinkContainer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+  }
+  #shareLink {
+    word-break: break-all;
+    background-color: #e0ffe0;
+    padding: 8px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<h1>LINEメッセージシェアツール</h1>
+
+<p>シェアしたいメッセージを入力してください。</p>
+<textarea id="messageInput" placeholder="ここにメッセージを入力してください"></textarea><br>
+<button onclick="generateLineShareLink()">LINEシェアリンクを生成</button>
+
+<div id="shareLinkContainer" style="display:none;">
+  <p>生成されたLINEシェアリンク:</p>
+  <div id="shareLink"></div>
+  <p>このリンクをコピーしてLINEでシェアしてください。</p>
+</div>
+
+<script>
+function generateLineShareLink() {
+  const message = document.getElementById('messageInput').value;
+  // LINEのシェアURLエンコードルールに従ってメッセージをエンコード
+  const encodedMessage = encodeURIComponent(message);
+  const lineShareUrl = `https://line.me/R/msg/text/?${encodedMessage}`;
+
+  document.getElementById('shareLink').innerText = lineShareUrl;
+  document.getElementById('shareLinkContainer').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
